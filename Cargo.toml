@@ -1,0 +1,28 @@
+[package]
+name = "nostdtrait"
+version = "0.1.0"
+authors = ["Julius Michaelis <michaelis@jp.fujitsu.com>"]
+edition = "2018"
+build = "build.rs"
+
+[[bin]]
+name = "demo"
+path = "main.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+#libc = "0.2.88"
+#compiler_builtins = { git = "https://github.com/rust-lang/compiler-builtins" }
+
+[profile.dev]
+panic = "abort" # otherwise we'll get complaints about a missing eh_personality language item
+
+[profile.release]
+panic = "abort"
+opt-level = 'z'
+lto = 'fat'
+codegen-units = 1
+
+[build-dependencies]
+cc = "1.0"
