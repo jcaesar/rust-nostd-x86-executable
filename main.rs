@@ -14,20 +14,20 @@ pub extern "C" fn __libc_start_main() -> () {
 }
 
 extern "C" {
-    fn asm_print(bytes: *const u8, len: usize) -> ();
-    fn asm_exit(code: usize) -> !;
+    fn sys_print(bytes: *const u8, len: usize) -> ();
+    fn sys_exit(code: usize) -> !;
 }
 
 fn print_str(s: &str) {
     let b = s.as_bytes();
     unsafe {
-        asm_print(b.as_ptr(), b.len());
+        sys_print(b.as_ptr(), b.len());
     }
 }
 
 fn exit(code: i8) -> ! {
     unsafe {
-        asm_exit(code as usize);
+        sys_exit(code as usize);
     }
 }
 

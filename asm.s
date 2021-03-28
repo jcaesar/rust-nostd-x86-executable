@@ -1,5 +1,5 @@
-.global asm_print
-asm_print:
+.global sys_print
+sys_print:
 	mov     %rsi,%rdx
 	mov     %rdi,%rsi
 	mov     $0x1,%rdi
@@ -7,8 +7,8 @@ asm_print:
 	syscall
 	ret
 
-.global asm_exit
-asm_exit:
+.global sys_exit
+sys_exit:
 	mov    $0x3C,%rax
 	syscall
 	hlt
