@@ -2,10 +2,10 @@
 #![no_main]
 
 #[no_mangle]
-pub extern "C" fn __libc_csu_init() -> () { }
+pub extern "C" fn __libc_csu_init() -> () {}
 
 #[no_mangle]
-pub extern "C" fn __libc_csu_fini() -> () { }
+pub extern "C" fn __libc_csu_fini() -> () {}
 
 #[no_mangle]
 pub extern "C" fn __libc_start_main() -> () {
@@ -60,4 +60,6 @@ impl Hoge for B {
     }
 }
 
-fn baz(hoge: &dyn Hoge) { hoge.say(); }
+fn baz(hoge: &dyn Hoge) {
+    hoge.say();
+}
