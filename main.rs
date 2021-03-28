@@ -14,14 +14,14 @@ pub extern "C" fn __libc_start_main() -> () {
 }
 
 extern "C" {
-    fn sys_print(bytes: *const u8, len: usize) -> ();
+    fn sys_write(fd: usize, bytes: *const u8, len: usize) -> isize;
     fn sys_exit(code: usize) -> !;
 }
 
 fn print_str(s: &str) {
     let b = s.as_bytes();
     unsafe {
-        sys_print(b.as_ptr(), b.len());
+        sys_write(1, b.as_ptr(), b.len());
     }
 }
 

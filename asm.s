@@ -1,8 +1,5 @@
-.global sys_print
-sys_print:
-	mov     %rsi,%rdx
-	mov     %rdi,%rsi
-	mov     $0x1,%rdi
+.global sys_write
+sys_write:
 	mov     $0x1,%rax
 	syscall
 	ret
