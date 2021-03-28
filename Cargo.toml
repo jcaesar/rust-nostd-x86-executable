@@ -9,12 +9,6 @@ build = "build.rs"
 name = "demo"
 path = "main.rs"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
-#libc = "0.2.88"
-#compiler_builtins = { git = "https://github.com/rust-lang/compiler-builtins" }
-
 [profile.dev]
 panic = "abort" # otherwise we'll get complaints about a missing eh_personality language item
 
