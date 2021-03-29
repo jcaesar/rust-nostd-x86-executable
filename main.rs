@@ -1,40 +1,20 @@
 #![no_std]
 #![no_main]
 
-#[no_mangle]
-pub extern "C" fn __libc_csu_init() -> () {}
-
-#[no_mangle]
-pub extern "C" fn __libc_csu_fini() -> () {}
-
-#[no_mangle]
-pub extern "C" fn __libc_start_main() -> () {
-    main();
-    exit(0);
-}
-
-extern "C" {
-    fn sys_write(fd: usize, bytes: *const u8, len: usize) -> isize;
-    fn sys_exit(code: usize) -> !;
-}
-
 fn print_str(s: &str) {
     let b = s.as_bytes();
     unsafe {
-        sys_write(1, b.as_ptr(), b.len());
-    }
-}
-
-fn exit(code: i8) -> ! {
-    unsafe {
-        sys_exit(code as usize);
+        libc::write(1, b.as_ptr() as *const libc::c_void, b.len());
     }
 }
 
 #[panic_handler]
 fn my_panic(_info: &core::panic::PanicInfo) -> ! {
-    print_str("##PANIC##\n");
-    exit(-1);
+    let b = "##PANIC##\n".as_bytes();
+    unsafe {
+        libc::write(2, b.as_ptr() as *const libc::c_void, b.len());
+        libc::abort();
+    }
 }
 
 #[no_mangle]

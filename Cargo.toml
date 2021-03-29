@@ -3,7 +3,6 @@ name = "nostdtrait"
 version = "0.1.0"
 authors = ["Julius Michaelis <michaelis@jp.fujitsu.com>"]
 edition = "2018"
-build = "build.rs"
 
 [[bin]]
 name = "demo"
@@ -19,4 +18,8 @@ lto = 'fat'
 codegen-units = 1
 
 [build-dependencies]
-cc = "1.0"
+cc = "1"
+
+[dependencies.libc]
+version = "0.2.91"
+default-features = false
